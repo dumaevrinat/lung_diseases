@@ -5,9 +5,9 @@ import numpy as np
 from PIL import Image
 from telebot.types import Message
 
-from app_bot.answers import get_answer_info_by_probability, add_answer_on_photo
-from prediction_service import PredictionService
-from utils.constants import *
+from answers import get_answer_info_by_probability, add_answer_on_photo
+from lungs_ml import PredictionService
+from config import *
 
 prediction_service = PredictionService(
     UNET_MODEL_CONFIG_PATH,

@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import ImageDraw, ImageFont, Image
 
-from utils.constants import FONT_PATH
+from config import FONT_PATH
 
 font = ImageFont.truetype(FONT_PATH, 32, encoding='UTF-8')
 
