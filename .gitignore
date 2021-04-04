@@ -40,3 +40,5 @@ prediction_models/unet_model.hdf5
 prediction_models/unet_model_structure.json
 
 venv/
+
+__pycache__/

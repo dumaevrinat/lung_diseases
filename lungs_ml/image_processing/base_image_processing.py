@@ -1,13 +1,15 @@
 from abc import ABCMeta, abstractmethod
 
+import numpy as np
+
 
 class BaseImageProcessing:
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def preprocessing(self, data):
+    def preprocess(self, data: np.ndarray) -> np.ndarray:
         pass
 
     @abstractmethod
-    def postprocessing(self, data):
+    def postprocess(self, data: np.ndarray)  -> np.ndarray:
         pass
