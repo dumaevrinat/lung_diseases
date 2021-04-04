@@ -1,0 +1,7 @@
+git+ssh://git@github.com/dumaevrinat/lung_diseases.git@main#egg=lungs_ml&subdirectory=lungs_ml
+numpy==1.19.2
+fastapi==0.63.0
+uvicorn==0.13.4
+Pillow==8.2.0
+python-multipart
+pydantic
