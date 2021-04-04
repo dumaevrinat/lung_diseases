@@ -33,3 +33,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+prediction_models/classification_model.hdf5
+prediction_models/classification_model_structure.json
+prediction_models/unet_model.hdf5
+prediction_models/unet_model_structure.json
+
+venv/
