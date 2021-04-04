@@ -1,6 +1,7 @@
 import numpy as np
 
-from lungs_ml import SegmentationImageProcessing, ClassificationImageProcessing, create_model
+from lungs_ml.image_processing import SegmentationImageProcessing, ClassificationImageProcessing
+from lungs_ml.models import create_model
 
 
 class PredictionService:
