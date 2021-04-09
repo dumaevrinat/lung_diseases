@@ -25,7 +25,10 @@ class ClassificationImageProcessing(BaseImageProcessing):
         result = data.astype(np.uint8)
         resized = self._resize(result)
 
-        clahe = cv2.createCLAHE(clipLimit=1.0, tileGridSize=(8, 8))
+        clahe = cv2.createCLAHE(
+            clipLimit=self._clahe_clip_limit,
+            tileGridSize=(self._clahe_tile_grid_size, self._clahe_tile_grid_size)
+        )
         result = clahe.apply(resized)
 
         result = result * 1. / 255
