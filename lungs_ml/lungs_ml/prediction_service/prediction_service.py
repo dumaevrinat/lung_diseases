@@ -1,19 +1,22 @@
 import numpy as np
 
-from lungs_ml.image_processing import SegmentationImageProcessing, ClassificationImageProcessing
+from lungs_ml.image_processing import BaseImageProcessing
 from lungs_ml.models import create_model
 
 
 class PredictionService:
     def __init__(self,
-                 segmentation_model_config,
-                 segmentation_model_weights,
-                 classification_model_config,
-                 classification_model_weights
+                 segmentation_processing: BaseImageProcessing,
+                 classification_processing: BaseImageProcessing,
+                 labels: list,
+                 segmentation_model_config: str,
+                 segmentation_model_weights: str,
+                 classification_model_config: str,
+                 classification_model_weights: str
                  ):
 
-        self._segmentation_processing = SegmentationImageProcessing()
-        self._classification_processing = ClassificationImageProcessing()
+        self._segmentation_processing = segmentation_processing
+        self._classification_processing = classification_processing
 
         self._segmentation_model = create_model(
             segmentation_model_config,
@@ -25,10 +28,7 @@ class PredictionService:
             classification_model_weights
         )
 
-        self._labels = [
-            'NORMAL',
-            'PNEUMONIA'
-        ]
+        self._labels = labels
 
     def predict(self, image: np.ndarray) -> np.array:
         mask = self.segment_lungs(image)
