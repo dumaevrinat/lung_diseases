@@ -27,12 +27,22 @@ class PredictionService:
 
         return probability
 
-    def segment_lungs(self, image: np.ndarray) -> np.ndarray:
+    def segment(self, image: np.ndarray) -> np.ndarray:
         image_for_segmentation = self._segmentation_processing.preprocess(image)
         mask = self._segmentation_model.predict(np.array([image_for_segmentation]))[0]
         mask = self._segmentation_processing.postprocess(mask)
 
         return mask
+
+    def segment_predict(self, image: np.ndarray) -> np.ndarray:
+        mask = self.segment(image)
+
+        image_for_classification = self._classification_processing.preprocess(image)
+        image_for_classification *= mask
+
+        probability = self.predict(image_for_classification)
+
+        return probability
 
     def get_labels(self):
         return self._labels

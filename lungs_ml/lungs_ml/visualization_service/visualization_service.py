@@ -5,7 +5,10 @@ from tensorflow.keras.models import Model
 
 class VisualizationService:
 
-    def __init__(self, model: Model, explainer_kwards: dict = None):
+    def __init__(self,
+                 model: Model,
+                 explainer_kwards: dict = None
+                 ):
         if explainer_kwards is None:
             explainer_kwards = {
                 'n_steps': 20,
@@ -23,7 +26,7 @@ class VisualizationService:
 
     def get_attributions(self, data: np.ndarray, probability: np.ndarray) -> np.ndarray:
         instance = np.array([data])
-        prediction = probability.argmax(axis=1)
+        prediction = np.array([probability]).argmax(axis=1)
 
         explanation = self._explainer.explain(instance, baselines=None, target=prediction)
 
