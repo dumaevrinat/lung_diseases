@@ -11,5 +11,5 @@ class BaseImageProcessing:
         pass
 
     @abstractmethod
-    def postprocess(self, data: np.ndarray)  -> np.ndarray:
+    def postprocess(self, data: np.ndarray) -> np.ndarray:
         pass

@@ -2,3 +2,4 @@ numpy==1.19.2
 opencv-python==4.5.1.48
 tensorflow==2.4.1
 scikit-image==0.18.1
+alibi==0.5.7

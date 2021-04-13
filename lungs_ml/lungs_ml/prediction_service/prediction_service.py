@@ -1,42 +1,29 @@
 import numpy as np
+from tensorflow.keras.models import Model
 
 from lungs_ml.image_processing import BaseImageProcessing
-from lungs_ml.models import create_model
 
 
 class PredictionService:
+
     def __init__(self,
                  segmentation_processing: BaseImageProcessing,
                  classification_processing: BaseImageProcessing,
                  labels: list,
-                 segmentation_model_config: str,
-                 segmentation_model_weights: str,
-                 classification_model_config: str,
-                 classification_model_weights: str
+                 segmentation_model: Model,
+                 classification_model: Model,
                  ):
 
         self._segmentation_processing = segmentation_processing
         self._classification_processing = classification_processing
 
-        self._segmentation_model = create_model(
-            segmentation_model_config,
-            segmentation_model_weights
-        )
-
-        self._classification_model = create_model(
-            classification_model_config,
-            classification_model_weights
-        )
+        self._segmentation_model = segmentation_model
+        self._classification_model = classification_model
 
         self._labels = labels
 
-    def predict(self, image: np.ndarray) -> np.array:
-        mask = self.segment_lungs(image)
-
-        image_for_classification = self._classification_processing.preprocess(image)
-        image_for_classification *= mask
-
-        probability = self._classification_model.predict(np.array([image_for_classification]))[0]
+    def predict(self, data: np.ndarray) -> np.array:
+        probability = self._classification_model.predict(np.array([data]))[0]
 
         return probability
 
