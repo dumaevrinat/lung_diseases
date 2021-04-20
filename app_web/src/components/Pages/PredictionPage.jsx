@@ -1,13 +1,19 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import {Button, makeStyles, Typography} from '@material-ui/core'
 import Upload from '../Upload'
 import {useDispatch, useSelector} from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import PredictionCard from '../PredictionCard'
 import UIContext from '../../context'
-import {deleteAllFiles} from '../../actions/xrays'
-import {Delete, GetApp} from '@material-ui/icons'
+import {
+    addFiles,
+    deleteAllFiles,
+    uploadFilesByStatus,
+} from '../../actions/xrays'
+import {Add, DeleteOutline, SaveAlt} from '@material-ui/icons'
 import {CSVLink} from 'react-csv'
+import Fab from '@material-ui/core/Fab'
+import HideOnScroll from '../HideOnScroll'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,9 +23,18 @@ const useStyles = makeStyles((theme) => ({
     actions: {
         display: 'flex',
         marginBottom: theme.spacing(4),
-        '& > *': {
+        '& > :not(:last-child)': {
             marginRight: theme.spacing(2),
         },
+    },
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+        zIndex: theme.zIndex.appBar,
+    },
+    fabIcon: {
+        marginRight: theme.spacing(1),
     },
     noFilesAlert: {
         display: 'flex',
@@ -27,30 +42,34 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         alignContent: 'center',
         flexGrow: 1,
-        marginTop: theme.spacing(4)
+        marginTop: theme.spacing(4),
     },
     marginBottom: {
-        marginBottom: theme.spacing(3)
-    }
+        marginBottom: theme.spacing(3),
+    },
 }))
 
-export default function PredictionPage() {
+const PredictionPage = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const files = useSelector(state => state.xrays.files)
-    const {setTitle} = useContext(UIContext)
-
-    useEffect(() => {
-        setTitle('Disease prediction')
-    }, [])
+    const {isMobile} = useContext(UIContext)
 
     const handleDeleteAll = () => {
         dispatch(deleteAllFiles())
     }
 
+    const handleAttachFiles = async (e) => {
+        if (e.target.files) {
+            const filesObj = Array.from(e.target.files)
+
+            await dispatch(addFiles(filesObj))
+            await dispatch(uploadFilesByStatus('idle'))
+        }
+    }
+
     return (
         <div className={classes.root}>
-
             {files.length === 0 ?
                 <div className={classes.noFilesAlert}>
                     <Typography variant='h6' className={classes.marginBottom}>
@@ -58,17 +77,46 @@ export default function PredictionPage() {
                     </Typography>
 
                     <Typography align='center' className={classes.marginBottom}>
-                        Start uploading chest X-rays and getting predictions. <br/>
+                        Start uploading chest X-rays and getting
+                        predictions. <br/>
                         Files you upload will show up here.
                     </Typography>
-                    <Upload/>
+                    <Upload
+                        onChange={handleAttachFiles}
+                        children={
+                            <Button
+                                startIcon={<Add/>}
+                                variant="contained"
+                                disableElevation
+                                color="primary"
+                                component="span"
+                            >
+                                Upload
+                            </Button>
+                        }
+                    />
                 </div>
                 :
                 <div>
                     <div className={classes.actions}>
-                        <Upload/>
+                        {!isMobile &&
+                        <Upload
+                            onChange={handleAttachFiles}
+                            children={
+                                <Button
+                                    startIcon={<Add/>}
+                                    variant="contained"
+                                    disableElevation
+                                    color="primary"
+                                    component="span"
+                                >
+                                    Upload
+                                </Button>
+                            }
+                        />
+                        }
                         <Button
-                            startIcon={<Delete/>}
+                            startIcon={<DeleteOutline/>}
                             disableElevation
                             variant='contained'
                             onClick={handleDeleteAll}
@@ -79,12 +127,12 @@ export default function PredictionPage() {
                             style={{textDecoration: 'none', color: 'inherit'}}
                             data={files.map((file) => ({
                                 fileName: file.fileName,
-                                ...file.probability
+                                ...file.probability,
                             }))}
-                            filename={"predictions.csv"}
+                            filename={'predictions.csv'}
                         >
                             <Button
-                                startIcon={<GetApp/>}
+                                startIcon={<SaveAlt/>}
                                 variant='contained'
                                 disableElevation
                             >
@@ -102,11 +150,31 @@ export default function PredictionPage() {
                                 xs={12} sm={6} md={4} lg={3}
                             >
                                 <PredictionCard file={file}/>
-                            </Grid>,
+                            </Grid>
                         )}
                     </Grid>
                 </div>
             }
+            {isMobile && files.length !== 0 &&
+            <Upload
+                onChange={handleAttachFiles}
+                children={
+                    <HideOnScroll>
+                        <Fab
+                            variant='extended'
+                            color='primary'
+                            component='span'
+                            className={classes.fab}
+                        >
+                            <Add className={classes.fabIcon}/>
+                            Upload
+                        </Fab>
+                    </HideOnScroll>
+                }
+            />
+            }
         </div>
     )
 }
+
+export default PredictionPage

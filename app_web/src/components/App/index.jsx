@@ -8,13 +8,13 @@ import {theme} from '../../theme'
 import {Switch, Redirect, Route, BrowserRouter} from 'react-router-dom'
 import {Grow, useMediaQuery} from '@material-ui/core'
 import NavDrawer from '../NavDrawer'
-import HomePage from '../Pages/HomePage'
-import PredictionPage from '../Pages/PredictionPage'
-import SettingsPage from '../Pages/SettingsPage'
 import {SnackbarProvider} from 'notistack'
 import Notifier from '../Notifier'
 import Header from '../Header'
-import Page from '../Pages/Page'
+import clsx from 'clsx'
+import HomePage from '../Pages/HomePage'
+import PredictionPage from '../Pages/PredictionPage'
+import SettingsPage from '../Pages/SettingsPage'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,10 +24,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
+        boxSizing: 'border-box',
+        padding: theme.spacing(2, 4, 4, 4),
+    },
+    mobilePadding: {
+        padding: theme.spacing(0, 2)
     }
 }))
 
-export default function App() {
+const App = () => {
     const classes = useStyles()
 
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
@@ -35,7 +40,6 @@ export default function App() {
     })
 
     const [isOpenDrawer, setIsOpenDrawer] = useState(() => !isMobile)
-    const [title, setTitle] = useState('')
 
     useEffect(() => {
         if (!isMobile) {
@@ -53,39 +57,31 @@ export default function App() {
                     }}
                     TransitionComponent={Grow}
                 >
-                    <UIContext.Provider
-                        value={{
-                            isOpenDrawer, setIsOpenDrawer,
-                            title, setTitle,
-                            isMobile
-                        }}
-                    >
+                    <UIContext.Provider value={{isOpenDrawer, setIsOpenDrawer, isMobile}}>
                         <BrowserRouter>
                             <div className={classes.root}>
                                 <NavDrawer/>
                                 <Notifier/>
-                                <div className={classes.page}>
-                                    <Header title={title}/>
-                                    <Page>
-                                        <Switch>
-                                            <Route
-                                                path={'/'}
-                                                exact
-                                                component={HomePage}
-                                            />
-                                            <Route
-                                                path={'/prediction'}
-                                                exact
-                                                component={PredictionPage}
-                                            />
-                                            <Route
-                                                path={'/settings'}
-                                                exact
-                                                component={SettingsPage}
-                                            />
-                                            <Redirect from={'/*'} to={'/'}/>
-                                        </Switch>
-                                    </Page>
+                                <div className={clsx(classes.page, isMobile && classes.mobilePadding)}>
+                                    <Header/>
+                                    <Switch>
+                                        <Route
+                                            path={'/'}
+                                            exact
+                                            component={HomePage}
+                                        />
+                                        <Route
+                                            path={'/prediction'}
+                                            exact
+                                            component={PredictionPage}
+                                        />
+                                        <Route
+                                            path={'/settings'}
+                                            exact
+                                            component={SettingsPage}
+                                        />
+                                        <Redirect from={'/*'} to={'/'}/>
+                                    </Switch>
                                 </div>
                             </div>
                         </BrowserRouter>
@@ -95,3 +91,5 @@ export default function App() {
         </Provider>
     )
 }
+
+export default App

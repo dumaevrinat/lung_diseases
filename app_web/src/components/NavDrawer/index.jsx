@@ -15,12 +15,12 @@ import {
 const useStyles = makeStyles((theme) => ({
     root: {
         width: theme.mixins.drawer.minWidth,
-        padding: theme.spacing(2, 1, 2, 2),
+        padding: theme.spacing(2, 2, 2, 2),
         height: '100%',
         flexShrink: 0,
     },
     paper: {
-        padding: theme.spacing(2, 1, 2, 2),
+        padding: theme.spacing(2, 2, 2, 2),
         width: theme.mixins.drawer.minWidth,
     },
     close: {
@@ -30,6 +30,16 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(2),
         fontWeight: theme.typography.fontWeightMedium
+    },
+    logoContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingBottom: theme.spacing(1)
+    },
+    logo: {
+        padding: theme.spacing(1),
+        height: 50,
+        width: 50
     }
 }))
 
@@ -69,7 +79,7 @@ const supportPages = [
     }
 ]
 
-export default function NavDrawer() {
+const NavDrawer = () => {
     const classes = useStyles()
     const history = useHistory()
     const location = useLocation()
@@ -86,15 +96,25 @@ export default function NavDrawer() {
 
     return (
         <Drawer
-            variant={isMobile ? 'temporary' : 'persistent'}
-            anchor='left'
             classes={{
                 root: clsx(classes.root, !isOpenDrawer && classes.close),
                 paper: classes.paper,
             }}
             open={isOpenDrawer}
+            anchor='left'
+            variant={isMobile ? 'temporary' : 'persistent'}
             onClose={() => setIsOpenDrawer(false)}
         >
+            <div className={classes.logoContainer}>
+                <img
+                    className={classes.logo}
+                    alt='logo'
+                    src='logo.png'
+                />
+                <Typography variant='h6'>
+                    lungs diseases
+                </Typography>
+            </div>
             <Typography className={classes.menuTitle} color='textSecondary' variant='overline'>
                 MENU
             </Typography>
@@ -125,8 +145,8 @@ export default function NavDrawer() {
                     />
                 )}
             </List>
-
         </Drawer>
     )
-
 }
+
+export default NavDrawer

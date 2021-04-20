@@ -42,3 +42,4 @@ prediction_models/unet_model_structure.json
 venv/
 
 __pycache__/
+*.ps1

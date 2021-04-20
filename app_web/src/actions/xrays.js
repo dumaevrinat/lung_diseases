@@ -1,66 +1,82 @@
-import {ADD_FILES, UPDATE_FILE, DELETE_FILE, DELETE_ALL_FILE} from './types'
-import {readFiles} from '../utils/upload'
+import {UPDATE_FILE, DELETE_FILE, DELETE_ALL_FILE, ADD_FILE} from './types'
+import {readFile} from '../utils/upload'
 import {nanoid} from 'nanoid'
 import {enqueueSnackbar} from './notifications'
 import {predict} from '../api'
 
-export const uploadFiles = () => async (dispatch, getState) => {
-    const files = getState().xrays.files.filter(file => file.status === 'idle')
+export const uploadFilesByStatus = (status) => async (dispatch, getState) => {
+    const files = getState().xrays.files.filter(file => file.status === status)
 
-    files.forEach(file => {
-        dispatch(updateFile({...file, status: 'loading'}))
+    await files.forEach(file => {
+        dispatch(uploadFile(file))
+    })
+}
 
-        predict(file.file, () => {})
-        .then(result => {
-            if (result.data) {
-                dispatch(updateFile({
-                    ...file,
-                    status: 'succeeded',
-                    probability: result.data.probability,
-                }))
-            } else {
-                dispatch(updateFile({
-                    ...file,
-                    status: 'failed',
-                }))
-                dispatch(enqueueSnackbar({message: 'Upload file error'}))
-            }
-        }).catch(error => {
+export const uploadFile = (file) => async (dispatch) => {
+    dispatch(updateFile({
+        id: file.id,
+        status: 'loading',
+    }))
+
+    predict(file.fileObj).then(result => {
+        if (result.data) {
             dispatch(updateFile({
-                ...file,
+                id: file.id,
+                status: 'succeeded',
+                probability: result.data.probability,
+            }))
+        } else {
+            dispatch(updateFile({
+                id: file.id,
                 status: 'failed',
             }))
+
             dispatch(enqueueSnackbar({message: 'Upload file error'}))
-        })
-    })
-}
-
-export const addFiles = (files) => async (dispatch) => {
-    await readFiles(files).then(readFiles => {
-        files = readFiles.map((fileData, i) => ({
-            id: nanoid(),
-            fileData: fileData,
-            fileName: files[i].name,
-            file: files[i],
-            status: 'idle',
-            uploadProgress: 0,
-            probability: [],
-        }))
-
-        dispatch({
-            type: ADD_FILES,
-            payload: files,
-        })
+        }
     }).catch(error => {
-        dispatch(enqueueSnackbar({
-            message: error,
+        dispatch(updateFile({
+            id: file.id,
+            status: 'failed',
         }))
+
+        dispatch(enqueueSnackbar({message: 'Upload file error'}))
     })
 }
 
-export const updateFile = (file) => ({
+export const addFiles = (filesObj) => async (dispatch) => {
+    await Promise.all(filesObj.map((fileObj) => new Promise((resolve, reject) => {
+        readFile(fileObj)
+            .then((fileRead) => {
+                dispatch(addFile(fileRead, fileObj))
+                resolve(fileRead)
+            })
+            .catch((error) => {
+                dispatch(enqueueSnackbar({message: error}))
+                reject(error)
+            })
+    })))
+}
+
+export const addFile = (fileRead, fileObj) => (dispatch) => {
+    const file = {
+        id: nanoid(),
+        fileData: fileRead,
+        fileName: fileObj.name,
+        fileObj: fileObj,
+        status: 'idle',
+        uploadProgress: 0,
+        probability: [],
+    }
+
+    dispatch({
+        type: ADD_FILE,
+        payload: file,
+    })
+}
+
+export const updateFile = (fileProps) => ({
     type: UPDATE_FILE,
-    payload: file,
+    payload: fileProps,
 })
 
 export const deleteFile = (id) => ({

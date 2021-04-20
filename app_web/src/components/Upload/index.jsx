@@ -1,9 +1,5 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core'
-import Button from '@material-ui/core/Button'
-import {useDispatch} from 'react-redux'
-import {uploadFiles, addFiles} from '../../actions/xrays'
-import {Publish} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,19 +9,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-
-export default function Upload() {
+const Upload = ({onChange, children}) => {
     const classes = useStyles()
-    const dispatch = useDispatch()
-
-    const handleAttachFiles = async (e) => {
-        if (e.target.files) {
-            const files = Array.from(e.target.files)
-
-            await dispatch(addFiles(files))
-            await dispatch(uploadFiles())
-        }
-    }
 
     return (
         <div className={classes.root}>
@@ -36,19 +21,13 @@ export default function Upload() {
                 multiple
                 type="file"
                 formEncType='multipart/form-data'
-                onChange={handleAttachFiles}
+                onChange={onChange}
             />
             <label htmlFor="contained-button-file">
-                <Button
-                    startIcon={<Publish/>}
-                    variant="contained"
-                    disableElevation
-                    color="primary"
-                    component="span"
-                >
-                    Upload
-                </Button>
+                {children}
             </label>
         </div>
     )
 }
+
+export default Upload

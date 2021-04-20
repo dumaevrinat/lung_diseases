@@ -3,10 +3,9 @@ import ListItem from '@material-ui/core/ListItem'
 import {Button, fade, makeStyles} from '@material-ui/core'
 import clsx from 'clsx'
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: theme.spacing(0, 0, 0.5, 0)
+        padding: theme.spacing(0, 0, 0.5, 0),
     },
     button: {
         padding: theme.spacing(1),
@@ -16,14 +15,14 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 1),
         display: 'flex',
         justifyContent: 'start',
-        textTransform: 'none'
+        textTransform: 'none',
     },
     selected: {
-        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity)
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
 }))
 
-export default function DrawerItem({text, icon, isSelected, onClick}) {
+const DrawerItem = ({text, icon, isSelected, onClick}) => {
     const classes = useStyles()
 
     return (
@@ -36,7 +35,7 @@ export default function DrawerItem({text, icon, isSelected, onClick}) {
                     root: clsx(classes.button, isSelected && classes.selected),
                     label: classes.label,
                 }}
-                size='large'
+                size="large"
                 color={isSelected ? 'primary' : 'default'}
                 startIcon={icon}
             >
@@ -45,3 +44,5 @@ export default function DrawerItem({text, icon, isSelected, onClick}) {
         </ListItem>
     )
 }
+
+export default DrawerItem

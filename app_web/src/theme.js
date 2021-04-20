@@ -4,6 +4,7 @@ const defaultTheme = createMuiTheme();
 
 export const theme = createMuiTheme({
     typography: {
+        fontSize: 15,
         fontFamily: [
             'Poppins',
             'Helvetica',

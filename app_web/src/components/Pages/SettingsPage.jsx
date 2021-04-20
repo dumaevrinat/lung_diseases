@@ -1,6 +1,5 @@
-import React, {useContext, useEffect} from 'react'
+import React from 'react'
 import {makeStyles} from '@material-ui/core'
-import UIContext from '../../context'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -9,14 +8,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function SettingsPage() {
+const SettingsPage = () => {
     const classes = useStyles()
-    const {setTitle} = useContext(UIContext)
-
-    useEffect(() => {
-        setTitle('Settings')
-    }, [])
-
 
     return (
         <div className={classes.root}>
@@ -24,3 +17,5 @@ export default function SettingsPage() {
         </div>
     )
 }
+
+export default SettingsPage

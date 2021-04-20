@@ -1,19 +1,12 @@
 import {
-    ADD_FILES, DELETE_ALL_FILE,
+    ADD_FILE,
+    DELETE_ALL_FILE,
     DELETE_FILE,
     UPDATE_FILE,
 } from '../actions/types'
 
 const initialState = {
-    files: [
-        // {
-        //     id: nanoid(),
-        //     file: file,
-        //     status: 'idle' 'loading' 'succeeded' 'failed',
-        //     uploadProgress: 0,
-        //     probability: [],
-        // },
-    ],
+    files: [],
     labels: [
         'Covid-19',
         'Normal',
@@ -23,13 +16,13 @@ const initialState = {
 
 export const xrays = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_FILES:
+        case ADD_FILE:
             return {
                 ...state,
                 files: [
-                    ...action.payload,
-                    ...state.files,
-                ],
+                    action.payload,
+                    ...state.files
+                ]
             }
 
         case DELETE_FILE:

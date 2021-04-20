@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useSnackbar} from 'notistack'
 import {removeSnackbar} from '../../actions/notifications'
 
 let displayed = []
 
-export default function Notifier() {
+const Notifier = () => {
     const dispatch = useDispatch()
     const notifications = useSelector(state => state.notifications.notifications)
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -45,5 +45,7 @@ export default function Notifier() {
         });
     }, [notifications, closeSnackbar, enqueueSnackbar, dispatch]);
 
-    return null;
+    return null
 }
+
+export default Notifier
