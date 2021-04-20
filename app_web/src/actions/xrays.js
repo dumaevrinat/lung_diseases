@@ -1,5 +1,4 @@
 import {UPDATE_FILE, DELETE_FILE, DELETE_ALL_FILE, ADD_FILE} from './types'
-import {readFile} from '../utils/upload'
 import {nanoid} from 'nanoid'
 import {enqueueSnackbar} from './notifications'
 import {predict} from '../api'
@@ -44,23 +43,13 @@ export const uploadFile = (file) => async (dispatch) => {
 }
 
 export const addFiles = (filesObj) => async (dispatch) => {
-    await Promise.all(filesObj.map((fileObj) => new Promise((resolve, reject) => {
-        readFile(fileObj)
-            .then((fileRead) => {
-                dispatch(addFile(fileRead, fileObj))
-                resolve(fileRead)
-            })
-            .catch((error) => {
-                dispatch(enqueueSnackbar({message: error}))
-                reject(error)
-            })
-    })))
+    await filesObj.forEach((fileObj) => dispatch(addFile(fileObj)))
 }
 
-export const addFile = (fileRead, fileObj) => (dispatch) => {
+export const addFile = (fileObj) => (dispatch) => {
     const file = {
         id: nanoid(),
-        fileData: fileRead,
+        fileUrl: URL.createObjectURL(fileObj),
         fileName: fileObj.name,
         fileObj: fileObj,
         status: 'idle',
@@ -84,7 +73,11 @@ export const deleteFile = (id) => ({
     payload: id,
 })
 
-export const deleteAllFiles = () => ({
-    type: DELETE_ALL_FILE,
-})
+export const deleteAllFiles = () => (dispatch, getState) => {
+    getState().xrays.files.forEach((file) => URL.revokeObjectURL(file.fileUrl))
+
+    dispatch({
+        type: DELETE_ALL_FILE,
+    })
+}
 

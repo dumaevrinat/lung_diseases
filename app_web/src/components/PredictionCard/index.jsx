@@ -42,7 +42,7 @@ const PredictionCard = ({file}) => {
 
     return (
         <div className={classes.root}>
-            <ImageCard fileData={file.fileData}/>
+            <ImageCard fileUrl={file.fileUrl}/>
 
             <div className={classes.footer}>
                 <Tooltip interactive placement="top" title={file.fileName}>

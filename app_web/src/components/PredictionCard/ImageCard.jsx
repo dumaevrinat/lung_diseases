@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const ImageCard = ({fileData}) => {
+const ImageCard = ({fileUrl}) => {
     const classes = useStyles()
 
     return (
@@ -31,7 +31,7 @@ const ImageCard = ({fileData}) => {
                     <CardMedia
                         className={classes.image}
                         component='img'
-                        image={fileData}
+                        src={fileUrl}
                     />
                 </div>
             </CardActionArea>
