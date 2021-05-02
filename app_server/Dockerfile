@@ -26,3 +26,5 @@ RUN gdown "${CLASSIFICATION_MODEL_CONFIG_URL}"
 RUN gdown "${UNET_MODEL_WEIGHTS_URL}"
 RUN gdown "${UNET_MODEL_CONFIG_URL}"
 RUN ls
+
+ENTRYPOINT ["python", "server.py"]
