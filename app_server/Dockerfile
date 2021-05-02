@@ -21,6 +21,9 @@ WORKDIR ${ROOT}
 
 COPY . .
 
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+
 RUN pip install --no-cache-dir -U pip
 RUN pip install -r requirements.txt
 RUN pip install gdown
