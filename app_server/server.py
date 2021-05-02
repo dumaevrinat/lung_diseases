@@ -4,19 +4,41 @@ import numpy as np
 import uvicorn
 from PIL import Image
 from fastapi import FastAPI, File, UploadFile
-from lungs_ml import PredictionService
+from fastapi.middleware.cors import CORSMiddleware
+from lungs_ml import SegmentationImageProcessing, ClassificationImageProcessing
+from lungs_ml.prediction_service import PredictionService
+from lungs_ml import create_model
 
 from config import *
 from models import PredictionResult
 
+labels = [
+    'COVID',
+    'NORMAL',
+    'PNEUMONIA'
+]
+
+segmentation_processing = SegmentationImageProcessing()
+classification_processing = ClassificationImageProcessing()
+
+unet_model = create_model(UNET_MODEL_CONFIG_PATH, UNET_MODEL_WEIGHTS_PATH)
+classification_model = create_model(CLASSIFICATION_MODEL_CONFIG_PATH, CLASSIFICATION_MODEL_WEIGHTS_PATH)
+
 prediction_service = PredictionService(
-    UNET_MODEL_CONFIG_PATH,
-    UNET_MODEL_WEIGHTS_PATH,
-    CLASSIFICATION_MODEL_CONFIG_PATH,
-    CLASSIFICATION_MODEL_WEIGHTS_PATH
+    SegmentationImageProcessing(),
+    ClassificationImageProcessing(),
+    labels, unet_model, classification_model
 )
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=['*'],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 
 @app.post('/predict', response_model=PredictionResult)
@@ -33,9 +55,10 @@ async def predict(file: UploadFile = File(...)):
     image = Image.open(image_stream).convert('L')
     image = np.array(image)
 
-    probability = prediction_service.predict(image).tolist()
+    probability = prediction_service.segment_predict(image)
+
     result = PredictionResult(
-        probability=probability,
+        probability=probability.tolist(),
         labels=prediction_service.get_labels()
     )
 

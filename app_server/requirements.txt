@@ -3,5 +3,6 @@ numpy==1.19.2
 fastapi==0.63.0
 uvicorn==0.13.4
 Pillow==8.2.0
+opencv-python==4.5.1.48
 python-multipart
 pydantic
