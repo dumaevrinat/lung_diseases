@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.7
 
 ARG CLASSIFICATION_MODEL_WEIGHTS_URL="https://drive.google.com/uc?id=1-o6LfhM048dMyDxhLFLXsNchFF4GCfOM"
 ARG CLASSIFICATION_MODEL_CONFIG_URL="https://drive.google.com/uc?id=1KsH-Z5XjLptacug39DyBgbe8noLIdIOn"
