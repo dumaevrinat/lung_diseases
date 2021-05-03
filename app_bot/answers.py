@@ -7,6 +7,11 @@ font = ImageFont.truetype(FONT_PATH, 32, encoding='UTF-8')
 
 answer_info_by_class = [
     {
+        'name': 'COVID',
+        'word': 'covid-19',
+        'background_image': Image.open('assets/answer_image_negative.jpg')
+    },
+    {
         'name': 'NORMAL',
         'word': 'все норм',
         'background_image': Image.open('assets/answer_image.jpg')
