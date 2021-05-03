@@ -21,12 +21,12 @@ WORKDIR ${ROOT}
 
 COPY . .
 
-RUN apt-get update
-RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt-get update && rm -rf /var/cache/apt
+RUN apt-get install ffmpeg libsm6 libxext6  -y && rm -rf /var/cache/apt
 
 RUN pip install --no-cache-dir -U pip
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install gdown
+RUN pip install --no-cache-dir gdown
 
 RUN gdown "${CLASSIFICATION_MODEL_WEIGHTS_URL}" -O "${CLASSIFICATION_MODEL_WEIGHTS_PATH}"
 RUN gdown "${CLASSIFICATION_MODEL_CONFIG_URL}" -O "${CLASSIFICATION_MODEL_CONFIG_PATH}"
