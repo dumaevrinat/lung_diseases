@@ -1,0 +1,26 @@
+name: Deploy app_bot to Docker Hub
+
+
+on:
+  push:
+    paths:
+      - 'app_bot/**'
+    branches: [ main ]
+    
+jobs:
+  deploy:
+    env:
+      workdir: ./app_bot
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v2
+
+    - name: "Publish to Docker Hub"
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: dumaevrinat/lungs_diseases_bot
+        workdir: ${{env.workdir}}
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_PASSWORD}}
