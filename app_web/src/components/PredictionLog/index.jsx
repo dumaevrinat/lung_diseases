@@ -40,12 +40,12 @@ const EmptyLog = () => {
             <TableBody>
                 {Array.from(Array(5)).map((_, index) => (
                     <TableRow key={index}>
-                        <StyledTableCell><Skeleton variant='circle' width={40} height={40}/></StyledTableCell>
-                        <StyledTableCell align='left'><Skeleton/></StyledTableCell>
-                        <StyledTableCell align='left'><Skeleton/></StyledTableCell>
-                        <StyledTableCell align='left'><Skeleton/></StyledTableCell>
-                        <StyledTableCell align='left'><Skeleton/></StyledTableCell>
-                        <StyledTableCell align='left'><Skeleton/></StyledTableCell>
+                        <StyledTableCell><Skeleton variant='circle' width={40} height={40} animation={false}/></StyledTableCell>
+                        <StyledTableCell align='left'><Skeleton animation={false}/></StyledTableCell>
+                        <StyledTableCell align='left'><Skeleton animation={false}/></StyledTableCell>
+                        <StyledTableCell align='left'><Skeleton animation={false}/></StyledTableCell>
+                        <StyledTableCell align='left'><Skeleton animation={false}/></StyledTableCell>
+                        <StyledTableCell align='left'><Skeleton animation={false}/></StyledTableCell>
                     </TableRow>
                 ))}
             </TableBody>

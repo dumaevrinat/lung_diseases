@@ -7,6 +7,9 @@ import PredictionLog from '../PredictionLog'
 import {useSelector} from 'react-redux'
 import HomeCard from '../HomeCard'
 import CarouselCardItem from '../CarouselCard/CarouselCardItem'
+import ActionCard from '../ActionCard'
+import {useHistory} from 'react-router-dom'
+import {GrainRounded} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const HomePage = () => {
     const classes = useStyles()
+    const history = useHistory()
 
     const files = useSelector(state => state.xrays.files)
     const averagePredictionTime = useSelector(state => state.xrays.files
@@ -53,11 +57,23 @@ const HomePage = () => {
             }, 0)
     )
 
+    const goToPage = (path) => {
+        history.push(`${path}`)
+    }
+
     return (
         <div className={classes.root}>
             <Grid container spacing={3} alignItems='stretch'>
                 <Grid item alignItems='stretch' container spacing={3} md={3}>
-                    <Grid item xs={6} sm={6} md={12}>
+                    <Grid item xs={12} sm={4} md={12}>
+                        <ActionCard
+                            title='Get predictions'
+                            icon={<GrainRounded/>}
+                            onClick={() => goToPage('/prediction')}
+                        />
+                    </Grid>
+
+                    <Grid item xs={6} sm={4} md={12}>
                         <HomeCard title='Total X-Ray'>
                             <CardContent className={classes.statisticCardContent}>
                                 <Typography color='secondary' variant='h5'>
@@ -69,7 +85,7 @@ const HomePage = () => {
                             </CardContent>
                         </HomeCard>
                     </Grid>
-                    <Grid item xs={6} sm={6} md={12}>
+                    <Grid item xs={6} sm={4} md={12}>
                         <HomeCard title='Average prediction time'>
                             <CardContent className={classes.statisticCardContent}>
                                 <Typography color='secondary' variant='h5'>

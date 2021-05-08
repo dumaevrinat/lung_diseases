@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const PredictionChart = () => {
     const classes = useStyles()
 
-    const colors = ['#6200EA', '#B140CB', '#FF80AB']
+    const colors = ['#B140CB', '#D860BB', '#FF80AB']
 
     const transformFilesData = (files, labels) => {
         return Object.values(
@@ -101,7 +101,7 @@ const PredictionChart = () => {
                             emptyFilesData.map((entry, index) => (
                                 <Cell
                                     key={`cell-${index}`}
-                                    fill={grey[200]}
+                                    fill={grey[300]}
                                 />))
                         }
                     </Pie>
