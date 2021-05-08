@@ -86,10 +86,10 @@ const PredictionPage = () => {
                         children={
                             <Button
                                 startIcon={<Add/>}
-                                variant="contained"
+                                variant='contained'
                                 disableElevation
-                                color="primary"
-                                component="span"
+                                color='primary'
+                                component='span'
                             >
                                 Upload
                             </Button>
@@ -105,10 +105,10 @@ const PredictionPage = () => {
                             children={
                                 <Button
                                     startIcon={<Add/>}
-                                    variant="contained"
+                                    variant='contained'
                                     disableElevation
-                                    color="primary"
-                                    component="span"
+                                    color='primary'
+                                    component='span'
                                 >
                                     Upload
                                 </Button>
@@ -143,7 +143,7 @@ const PredictionPage = () => {
                     <Grid container spacing={4}>
                         {files.map(file =>
                             <Grid
-                                direction="column"
+                                direction='column'
                                 container
                                 key={file.id}
                                 item

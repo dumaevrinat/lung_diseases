@@ -13,7 +13,7 @@ export const theme = createMuiTheme({
         ].join(','),
         h5: {
             lineHeight: 1.235,
-            letterSpacing: "0.00735em"
+            letterSpacing: '0.00735em'
         }
     },
     mixins: {
@@ -40,5 +40,4 @@ export const theme = createMuiTheme({
             }
         },
     },
-
 })

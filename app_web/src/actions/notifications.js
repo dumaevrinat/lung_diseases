@@ -8,17 +8,17 @@ export const enqueueSnackbar = (notification) => {
         notification: {
             ...notification,
             key: key || new Date().getTime() + Math.random(),
-        },
-    };
-};
+        }
+    }
+}
 
 export const closeSnackbar = key => ({
     type: CLOSE_SNACKBAR,
     dismissAll: !key,
     key,
-});
+})
 
 export const removeSnackbar = key => ({
     type: REMOVE_SNACKBAR,
     key,
-});
+})

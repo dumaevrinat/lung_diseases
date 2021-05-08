@@ -45,21 +45,21 @@ const PredictionCard = ({file}) => {
             <ImageCard fileUrl={file.fileUrl}/>
 
             <div className={classes.footer}>
-                <Tooltip interactive placement="top" title={file.fileName}>
+                <Tooltip interactive placement='top' title={file.fileName}>
                     <Box
                         className={classes.title}
-                        fontWeight="fontWeightMedium"
-                        fontFamily="fontFamily"
+                        fontWeight='fontWeightMedium'
+                        fontFamily='fontFamily'
                     >
                         {file.fileName}
                     </Box>
                 </Tooltip>
                 <div>
-                    {file.status === 'loading' && <CircularProgress color="secondary" size={28} thickness={4.0}/>}
+                    {file.status === 'loading' && <CircularProgress color='secondary' size={28} thickness={4.0}/>}
                     {file.status === 'succeeded' &&
                     <Chip
-                        color="secondary"
-                        variant="outlined"
+                        color='secondary'
+                        variant='outlined'
                         clickable
                         onClick={handleClickChip}
                         label={labels[file.probability.indexOf(Math.max(...file.probability))]}

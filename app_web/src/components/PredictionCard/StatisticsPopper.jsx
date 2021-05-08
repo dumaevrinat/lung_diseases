@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
         padding: theme.spacing(2),
-        borderRadius: theme.spacing(2)
+        borderRadius: theme.spacing(2),
     },
     row: {},
     cell: {
@@ -38,31 +38,21 @@ const StatisticsPopper = ({isOpen, anchorEl, onClickAway, data}) => {
                     <Fade {...TransitionProps} disableStrictModeCompat>
                         <Paper className={classes.paper}>
                             <table>
-                                <thead>
-                                </thead>
                                 <tbody>
-                                {data
-                                .sort((a,b) => b.value - a.value)
-                                .map(({label, value}, i) => (
+                                {data.sort((a, b) => b.value - a.value).map(({label, value}, i) => (
                                     <tr className={classes.row} key={label}>
-                                        <td align='left'
-                                            className={classes.cell}
-                                        >
+                                        <td align='left' className={classes.cell}>
                                             <Typography>
                                                 {label}
                                             </Typography>
                                         </td>
                                         <td align='left'>
-                                            <Box
-                                                fontWeight='fontWeightMedium'
-                                                fontFamily='fontFamily'
-                                            >
+                                            <Box fontWeight='fontWeightMedium' fontFamily='fontFamily'>
                                                 {`${(value * 100).toFixed(1)}%`}
                                             </Box>
                                         </td>
                                     </tr>
-                                    ))
-                                }
+                                ))}
                                 </tbody>
                             </table>
                         </Paper>

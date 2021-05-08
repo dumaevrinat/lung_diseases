@@ -106,18 +106,16 @@ const NavDrawer = () => {
             onClose={() => setIsOpenDrawer(false)}
         >
             <div className={classes.logoContainer}>
-                <img
-                    className={classes.logo}
-                    alt='logo'
-                    src='logo.png'
-                />
+                <img className={classes.logo} alt='logo' src='logo.png'/>
                 <Typography variant='h6'>
                     lungs diseases
                 </Typography>
             </div>
+
             <Typography className={classes.menuTitle} color='textSecondary' variant='overline'>
                 MENU
             </Typography>
+
             <List disablePadding>
                 {pages.map(page =>
                     <DrawerItem

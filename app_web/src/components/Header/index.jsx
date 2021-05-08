@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: theme.spacing(2, 0),
+        padding: theme.spacing(4, 0),
         marginBottom: theme.spacing(2)
     },
     menuButton: {
@@ -39,15 +39,15 @@ const Header = () => {
     return (
         <AppBar
             className={classes.root}
-            position="relative"
+            position='relative'
             elevation={0}
-            color="white"
+            color='transparent'
         >
             {isMobile &&
             <IconButton
                 className={classes.menuButton}
                 onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-                color="inherit"
+                color='inherit'
             >
                 <MenuIcon/>
             </IconButton>

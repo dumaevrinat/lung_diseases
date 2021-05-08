@@ -15,6 +15,7 @@ export const uploadFile = (file) => async (dispatch) => {
     dispatch(updateFile({
         id: file.id,
         status: 'loading',
+        dateOfStartPrediction: new Date(),
     }))
 
     predict(file.fileObj).then(result => {
@@ -23,21 +24,14 @@ export const uploadFile = (file) => async (dispatch) => {
                 id: file.id,
                 status: 'succeeded',
                 probability: result.data.probability,
+                dateOfCompletePrediction: new Date(),
             }))
         } else {
-            dispatch(updateFile({
-                id: file.id,
-                status: 'failed',
-            }))
-
+            dispatch(updateFile({id: file.id, status: 'failed'}))
             dispatch(enqueueSnackbar({message: 'Upload file error'}))
         }
     }).catch(error => {
-        dispatch(updateFile({
-            id: file.id,
-            status: 'failed',
-        }))
-
+        dispatch(updateFile({id: file.id, status: 'failed'}))
         dispatch(enqueueSnackbar({message: 'Upload file error'}))
     })
 }
@@ -52,8 +46,9 @@ export const addFile = (fileObj) => (dispatch) => {
         fileUrl: URL.createObjectURL(fileObj),
         fileName: fileObj.name,
         fileObj: fileObj,
+        dateOfStartPrediction: undefined,
+        dateOfCompletePrediction: undefined,
         status: 'idle',
-        uploadProgress: 0,
         probability: [],
     }
 
@@ -80,4 +75,3 @@ export const deleteAllFiles = () => (dispatch, getState) => {
         type: DELETE_ALL_FILE,
     })
 }
-

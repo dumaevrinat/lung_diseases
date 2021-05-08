@@ -15,15 +15,15 @@ const Upload = ({onChange, children}) => {
     return (
         <div className={classes.root}>
             <input
-                accept="image/*"
+                accept='image/*'
                 className={classes.input}
-                id="contained-button-file"
+                id='contained-button-file'
                 multiple
-                type="file"
+                type='file'
                 formEncType='multipart/form-data'
                 onChange={onChange}
             />
-            <label htmlFor="contained-button-file">
+            <label htmlFor='contained-button-file'>
                 {children}
             </label>
         </div>

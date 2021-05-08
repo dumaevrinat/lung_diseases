@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2, 4, 4, 4),
     },
     mobilePadding: {
-        padding: theme.spacing(0, 2)
-    }
+        padding: theme.spacing(0, 2),
+    },
 }))
 
 const App = () => {
     const classes = useStyles()
 
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
         noSsr: true,
     })
 
@@ -62,26 +62,15 @@ const App = () => {
                             <div className={classes.root}>
                                 <NavDrawer/>
                                 <Notifier/>
+
                                 <div className={clsx(classes.page, isMobile && classes.mobilePadding)}>
-                                    <Header/>
-                                    <Switch>
-                                        <Route
-                                            path={'/'}
-                                            exact
-                                            component={HomePage}
-                                        />
-                                        <Route
-                                            path={'/prediction'}
-                                            exact
-                                            component={PredictionPage}
-                                        />
-                                        <Route
-                                            path={'/settings'}
-                                            exact
-                                            component={SettingsPage}
-                                        />
-                                        <Redirect from={'/*'} to={'/'}/>
-                                    </Switch>
+                                        <Header/>
+                                        <Switch>
+                                            <Route path={'/'} exact component={HomePage}/>
+                                            <Route path={'/prediction'} exact component={PredictionPage}/>
+                                            <Route path={'/settings'} exact component={SettingsPage}/>
+                                            <Redirect from={'/*'} to={'/'}/>
+                                        </Switch>
                                 </div>
                             </div>
                         </BrowserRouter>

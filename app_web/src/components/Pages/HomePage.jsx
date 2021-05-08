@@ -1,87 +1,139 @@
 import React from 'react'
-import {
-    CardContent,
-    IconButton,
-    makeStyles,
-    Typography,
-} from '@material-ui/core'
-import Card from '@material-ui/core/Card'
+import {CardContent, makeStyles, Typography} from '@material-ui/core'
 import PredictionChart from '../PredictionChart'
-import CardActions from '@material-ui/core/CardActions'
 import Grid from '@material-ui/core/Grid'
-import {ArrowBack, ArrowForward} from '@material-ui/icons'
+import CarouselCard from '../CarouselCard'
+import PredictionLog from '../PredictionLog'
+import {useSelector} from 'react-redux'
+import HomeCard from '../HomeCard'
+import CarouselCardItem from '../CarouselCard/CarouselCardItem'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-    },
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: theme.spacing(2),
-        height: '100%',
         width: '100%',
     },
     chartCardContent: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
         height: '100%',
         width: '100%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
     },
-    chart: {
+    logCardContent: {
+        overflowX: 'auto',
     },
-    cardTitle: {
-        marginBottom: theme.spacing(2)
-    }
+    statisticCardContent: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        paddingTop: 0,
+        '& > :not(:last-child)': {
+            marginRight: theme.spacing(1),
+        },
+    },
 }))
 
 const HomePage = () => {
     const classes = useStyles()
 
+    const files = useSelector(state => state.xrays.files)
+    const averagePredictionTime = useSelector(state => state.xrays.files
+        .map(file => file.dateOfCompletePrediction - file.dateOfStartPrediction)
+        .filter(timeDifference => !Number.isNaN(timeDifference))
+        .reduce((result, timeDifference, index, array) => {
+                result += timeDifference
+
+                if (index === array.length - 1) {
+                    result /= array.length
+                }
+
+                return result
+            }, 0)
+    )
+
     return (
         <div className={classes.root}>
-            <Grid container spacing={4} alignContent='stretch'>
-                <Grid
-                    direction="column" container item
-                    xs={12} sm={6} md={6} lg={4}
-                >
-                    <Card className={classes.card}>
-                        <CardContent className={classes.chartCardContent}>
-                                <PredictionChart/>
-                        </CardContent>
-                    </Card>
+            <Grid container spacing={3} alignItems='stretch'>
+                <Grid item alignItems='stretch' container spacing={3} md={3}>
+                    <Grid item xs={6} sm={6} md={12}>
+                        <HomeCard title='Total X-Ray'>
+                            <CardContent className={classes.statisticCardContent}>
+                                <Typography color='secondary' variant='h5'>
+                                    {files.length}
+                                </Typography>
+                                <Typography color='secondary'>
+                                    images
+                                </Typography>
+                            </CardContent>
+                        </HomeCard>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={12}>
+                        <HomeCard title='Average prediction time'>
+                            <CardContent className={classes.statisticCardContent}>
+                                <Typography color='secondary' variant='h5'>
+                                    {(averagePredictionTime / (1000 * 60)).toFixed(2)}
+                                </Typography>
+                                <Typography color='secondary'>
+                                    minutes
+                                </Typography>
+                            </CardContent>
+                        </HomeCard>
+                    </Grid>
                 </Grid>
-                <Grid
-                    direction="column" container item
-                    xs={12} sm={6} md={6} lg={4}
-                >
-                    <Card className={classes.card}>
-                        <CardContent>
-                            <Typography variant='h6' className={classes.cardTitle}>
-                                Covid-19
-                            </Typography>
-                            <Typography>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                                erfferferrfefeerer <br/>
-                            </Typography>
+
+                <Grid item xs={12} sm={6} md>
+                    <HomeCard title='Prediction statistics'>
+                        <CardContent className={classes.chartCardContent}>
+                            <PredictionChart/>
                         </CardContent>
-                        <CardActions>
-                            <IconButton>
-                                <ArrowBack/>
-                            </IconButton>
-                            <IconButton>
-                                <ArrowForward/>
-                            </IconButton>
-                        </CardActions>
-                    </Card>
+                    </HomeCard>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md>
+                    <CarouselCard items={[
+                        <CarouselCardItem title='Covid-19'>
+                            <Typography>
+                                Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered
+                                coronavirus.
+                                <br/>
+                                <br/>
+                                Most people infected with the COVID-19 virus will experience mild to moderate
+                                respiratory
+                                illness and recover without requiring special treatment. Older people, and those
+                                with
+                                underlying medical problems like cardiovascular disease, diabetes, chronic
+                                respiratory
+                                disease, and cancer are more likely to develop serious illness.
+                            </Typography>
+                        </CarouselCardItem>,
+                        <CarouselCardItem title='Pneumonia'>
+                            <Typography>
+                                Pneumonia is an inflammatory condition of the lung primarily affecting the small air
+                                sacs known as alveoli.
+                                Symptoms typically include some combination of productive or dry cough, chest pain,
+                                fever and difficulty
+                                breathing. The severity of the condition is variable.
+                                <br/>
+                                <br/>
+                                Pneumonia is usually caused by infection with viruses or bacteria, and less commonly
+                                by other microorganisms. Identifying the responsible pathogen can be difficult.
+                                Diagnosis is often based on symptoms and physical examination. Chest X-rays,
+                                blood tests, and culture of the sputum may help confirm the diagnosis. The disease
+                                may be classified by where it was acquired, such as community- or hospital-acquired
+                                or healthcare-associated pneumonia.
+                            </Typography>
+                        </CarouselCardItem>
+                    ]}/>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <HomeCard title='Prediction log'>
+                        <CardContent className={classes.logCardContent}>
+                            <PredictionLog/>
+                        </CardContent>
+                    </HomeCard>
                 </Grid>
             </Grid>
         </div>

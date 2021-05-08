@@ -35,7 +35,7 @@ const DrawerItem = ({text, icon, isSelected, onClick}) => {
                     root: clsx(classes.button, isSelected && classes.selected),
                     label: classes.label,
                 }}
-                size="large"
+                size='large'
                 color={isSelected ? 'primary' : 'default'}
                 startIcon={icon}
             >
