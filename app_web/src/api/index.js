@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_BASE_URL
 
 export const predict = (file, onUploadProgress) => {
     const formData = new FormData()
