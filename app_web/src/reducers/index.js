@@ -1,6 +1,6 @@
-import {xrays} from './xrays'
-import {notifications} from './notifications'
+import { xrays } from './xrays'
+import { notifications } from './notifications'
 
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
-export default combineReducers({xrays, notifications})
+export default combineReducers({ xrays, notifications })

@@ -1,4 +1,4 @@
-import {CardActionArea, CardMedia, makeStyles} from '@material-ui/core'
+import { CardActionArea, CardMedia, makeStyles } from '@material-ui/core'
 import Card from '@material-ui/core/Card'
 import React from 'react'
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const ImageCard = ({fileUrl}) => {
+const ImageCard = ({ fileUrl }) => {
     const classes = useStyles()
 
     return (

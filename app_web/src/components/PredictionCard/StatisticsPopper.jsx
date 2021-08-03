@@ -1,5 +1,5 @@
 import React from 'react'
-import {makeStyles, Typography} from '@material-ui/core'
+import { makeStyles, Typography } from '@material-ui/core'
 import Popper from '@material-ui/core/Popper'
 import Fade from '@material-ui/core/Fade'
 import Paper from '@material-ui/core/Paper'
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const StatisticsPopper = ({isOpen, anchorEl, onClickAway, data}) => {
+const StatisticsPopper = ({ isOpen, anchorEl, onClickAway, data }) => {
     const classes = useStyles()
 
     return (
@@ -34,25 +34,25 @@ const StatisticsPopper = ({isOpen, anchorEl, onClickAway, data}) => {
                 placement='top'
                 transition
             >
-                {({TransitionProps}) => (
+                {({ TransitionProps }) => (
                     <Fade {...TransitionProps} disableStrictModeCompat>
                         <Paper className={classes.paper}>
                             <table>
                                 <tbody>
-                                {data.sort((a, b) => b.value - a.value).map(({label, value}, i) => (
-                                    <tr className={classes.row} key={label}>
-                                        <td align='left' className={classes.cell}>
-                                            <Typography>
-                                                {label}
-                                            </Typography>
-                                        </td>
-                                        <td align='left'>
-                                            <Box fontWeight='fontWeightMedium' fontFamily='fontFamily'>
-                                                {`${(value * 100).toFixed(1)}%`}
-                                            </Box>
-                                        </td>
-                                    </tr>
-                                ))}
+                                    {data.sort((a, b) => b.value - a.value).map(({ label, value }, i) => (
+                                        <tr className={classes.row} key={label}>
+                                            <td align='left' className={classes.cell}>
+                                                <Typography>
+                                                    {label}
+                                                </Typography>
+                                            </td>
+                                            <td align='left'>
+                                                <Box fontWeight='fontWeightMedium' fontFamily='fontFamily'>
+                                                    {`${(value * 100).toFixed(1)}%`}
+                                                </Box>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </Paper>

@@ -27,8 +27,8 @@ export const notifications = (state = initialState, action) => {
                 ...state,
                 notifications: state.notifications.map(notification => (
                     (action.dismissAll || notification.key === action.key)
-                        ? {...notification, dismissed: true}
-                        : {...notification}
+                        ? { ...notification, dismissed: true }
+                        : { ...notification }
                 )),
             }
 
@@ -43,4 +43,4 @@ export const notifications = (state = initialState, action) => {
         default:
             return state
     }
-};
+}

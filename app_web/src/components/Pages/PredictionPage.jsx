@@ -1,7 +1,7 @@
-import React, {useContext} from 'react'
-import {Button, makeStyles, Typography} from '@material-ui/core'
+import React, { useContext } from 'react'
+import { Button, makeStyles, Typography } from '@material-ui/core'
 import Upload from '../Upload'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import PredictionCard from '../PredictionCard'
 import UIContext from '../../context'
@@ -10,8 +10,8 @@ import {
     deleteAllFiles,
     uploadFilesByStatus,
 } from '../../actions/xrays'
-import {Add, DeleteOutline, SaveAlt} from '@material-ui/icons'
-import {CSVLink} from 'react-csv'
+import { Add, DeleteOutline, SaveAlt } from '@material-ui/icons'
+import { CSVLink } from 'react-csv'
 import Fab from '@material-ui/core/Fab'
 import HideOnScroll from '../HideOnScroll'
 
@@ -53,7 +53,7 @@ const PredictionPage = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const files = useSelector(state => state.xrays.files)
-    const {isMobile} = useContext(UIContext)
+    const { isMobile } = useContext(UIContext)
 
     const handleDeleteAll = () => {
         dispatch(deleteAllFiles())
@@ -78,14 +78,14 @@ const PredictionPage = () => {
 
                     <Typography align='center' className={classes.marginBottom}>
                         Start uploading chest X-rays and getting
-                        predictions. <br/>
+                        predictions. <br />
                         Files you upload will show up here.
                     </Typography>
                     <Upload
                         onChange={handleAttachFiles}
                         children={
                             <Button
-                                startIcon={<Add/>}
+                                startIcon={<Add />}
                                 variant='contained'
                                 disableElevation
                                 color='primary'
@@ -100,23 +100,23 @@ const PredictionPage = () => {
                 <div>
                     <div className={classes.actions}>
                         {!isMobile &&
-                        <Upload
-                            onChange={handleAttachFiles}
-                            children={
-                                <Button
-                                    startIcon={<Add/>}
-                                    variant='contained'
-                                    disableElevation
-                                    color='primary'
-                                    component='span'
-                                >
-                                    Upload
-                                </Button>
-                            }
-                        />
+                            <Upload
+                                onChange={handleAttachFiles}
+                                children={
+                                    <Button
+                                        startIcon={<Add />}
+                                        variant='contained'
+                                        disableElevation
+                                        color='primary'
+                                        component='span'
+                                    >
+                                        Upload
+                                    </Button>
+                                }
+                            />
                         }
                         <Button
-                            startIcon={<DeleteOutline/>}
+                            startIcon={<DeleteOutline />}
                             disableElevation
                             variant='contained'
                             onClick={handleDeleteAll}
@@ -124,7 +124,7 @@ const PredictionPage = () => {
                             Delete all
                         </Button>
                         <CSVLink
-                            style={{textDecoration: 'none', color: 'inherit'}}
+                            style={{ textDecoration: 'none', color: 'inherit' }}
                             data={files.map((file) => ({
                                 fileName: file.fileName,
                                 ...file.probability,
@@ -132,7 +132,7 @@ const PredictionPage = () => {
                             filename={'predictions.csv'}
                         >
                             <Button
-                                startIcon={<SaveAlt/>}
+                                startIcon={<SaveAlt />}
                                 variant='contained'
                                 disableElevation
                             >
@@ -149,29 +149,29 @@ const PredictionPage = () => {
                                 item
                                 xs={12} sm={6} md={4} lg={3}
                             >
-                                <PredictionCard file={file}/>
+                                <PredictionCard file={file} />
                             </Grid>
                         )}
                     </Grid>
                 </div>
             }
             {isMobile && files.length !== 0 &&
-            <Upload
-                onChange={handleAttachFiles}
-                children={
-                    <HideOnScroll>
-                        <Fab
-                            variant='extended'
-                            color='primary'
-                            component='span'
-                            className={classes.fab}
-                        >
-                            <Add className={classes.fabIcon}/>
-                            Upload
-                        </Fab>
-                    </HideOnScroll>
-                }
-            />
+                <Upload
+                    onChange={handleAttachFiles}
+                    children={
+                        <HideOnScroll>
+                            <Fab
+                                variant='extended'
+                                color='primary'
+                                component='span'
+                                className={classes.fab}
+                            >
+                                <Add className={classes.fabIcon} />
+                                Upload
+                            </Fab>
+                        </HideOnScroll>
+                    }
+                />
             }
         </div>
     )

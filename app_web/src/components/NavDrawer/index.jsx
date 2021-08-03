@@ -1,6 +1,6 @@
-import React, {useContext} from 'react'
-import {makeStyles, Typography} from '@material-ui/core'
-import {useHistory, useLocation} from 'react-router-dom'
+import React, { useContext } from 'react'
+import { makeStyles, Typography } from '@material-ui/core'
+import { useHistory, useLocation } from 'react-router-dom'
 import UIContext from '../../context'
 import Drawer from '@material-ui/core/Drawer'
 import clsx from 'clsx'
@@ -46,17 +46,17 @@ const useStyles = makeStyles((theme) => ({
 const pages = [
     {
         title: 'Home',
-        icon: <HomeOutlined/>,
+        icon: <HomeOutlined />,
         path: '/',
     },
     {
         title: 'Disease prediction',
-        icon: <GrainRounded/>,
+        icon: <GrainRounded />,
         path: '/prediction'
     },
     {
         title: 'Settings',
-        icon: <SettingsOutlined/>,
+        icon: <SettingsOutlined />,
         path: '/settings'
     }
 ]
@@ -64,17 +64,17 @@ const pages = [
 const supportPages = [
     {
         title: 'Docs',
-        icon: <InsertDriveFileOutlined/>,
+        icon: <InsertDriveFileOutlined />,
         path: '/docs',
     },
     {
         title: 'Help',
-        icon: <HelpOutlineOutlined/>,
+        icon: <HelpOutlineOutlined />,
         path: '/help',
     },
     {
         title: 'About',
-        icon: <InfoOutlined/>,
+        icon: <InfoOutlined />,
         path: '/about',
     }
 ]
@@ -84,7 +84,7 @@ const NavDrawer = () => {
     const history = useHistory()
     const location = useLocation()
 
-    const {isMobile, isOpenDrawer, setIsOpenDrawer} = useContext(UIContext)
+    const { isMobile, isOpenDrawer, setIsOpenDrawer } = useContext(UIContext)
 
     const goToPage = (page) => {
         history.push(`${page.path}`)
@@ -106,7 +106,7 @@ const NavDrawer = () => {
             onClose={() => setIsOpenDrawer(false)}
         >
             <div className={classes.logoContainer}>
-                <img className={classes.logo} alt='logo' src='logo.png'/>
+                <img className={classes.logo} alt='logo' src='logo.png' />
                 <Typography variant='h6'>
                     lungs diseases
                 </Typography>
