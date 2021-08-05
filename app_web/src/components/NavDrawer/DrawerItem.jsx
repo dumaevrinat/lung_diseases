@@ -1,6 +1,6 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem'
-import {Button, fade, makeStyles} from '@material-ui/core'
+import { Button, fade, makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const DrawerItem = ({text, icon, isSelected, onClick}) => {
+const DrawerItem = ({ text, icon, isSelected, onClick }) => {
     const classes = useStyles()
 
     return (

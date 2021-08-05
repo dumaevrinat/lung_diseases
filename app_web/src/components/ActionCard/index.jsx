@@ -1,46 +1,41 @@
-import {makeStyles} from '@material-ui/styles'
-import {Button} from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { Button, Card, CardContent } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
         width: '100%',
-        minHeight: theme.spacing(8),
+        minHeight: theme.spacing(18),
         display: 'flex',
+        alignItems: 'flex-end',
         borderRadius: theme.spacing(2),
+        backgroundImage: props => `url(${props.image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
     },
-    label: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: theme.spacing(1),
-        textTransform: 'none',
-    },
-    startIcon: {
-        margin: 0,
-        marginBottom: theme.spacing(1)
+    content: {
+        padding: theme.spacing(3)
     }
 }))
 
-const ActionCard = ({title, icon, onClick}) => {
-    const classes = useStyles()
+const ActionCard = ({ title, image, icon, onClick }) => {
+    const classes = useStyles({ image })
 
     return (
-        <Button
-            variant='contained'
-            disableElevation
-            classes={{
-                root: classes.root,
-                label: classes.label,
-                startIcon: classes.startIcon
-            }}
-            onClick={onClick}
-            size='large'
-            color='primary'
-            startIcon={icon}
-        >
-            {title}
-        </Button>
+        <Card variant='outlined' className={classes.root}>
+            <CardContent className={classes.content}>
+                <Button
+                    variant='contained'
+                    disableElevation
+                    color='primary'
+                    startIcon={icon}
+                    onClick={onClick}
+                >
+                    {title}
+                </Button>
+            </CardContent>
+        </Card>
     )
 }
 

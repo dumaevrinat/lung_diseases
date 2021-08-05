@@ -1,9 +1,9 @@
-import {makeStyles} from '@material-ui/styles'
-import {Fade, IconButton} from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { Fade, IconButton } from '@material-ui/core'
 import CardActions from '@material-ui/core/CardActions'
-import {ArrowBack, ArrowForward} from '@material-ui/icons'
+import { ArrowBack, ArrowForward } from '@material-ui/icons'
 import Card from '@material-ui/core/Card'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const CarouselCard = ({items}) => {
+const CarouselCard = ({ items }) => {
     const classes = useStyles()
     const [currentIndex, setCurrentIndex] = useState(0)
     const [transitionIn, setTransitionIn] = useState(true)
@@ -45,10 +45,10 @@ const CarouselCard = ({items}) => {
             </Fade>
             <CardActions>
                 <IconButton onClick={() => handleArrowClick('left')}>
-                    <ArrowBack/>
+                    <ArrowBack />
                 </IconButton>
                 <IconButton onClick={() => handleArrowClick('right')}>
-                    <ArrowForward/>
+                    <ArrowForward />
                 </IconButton>
             </CardActions>
         </Card>

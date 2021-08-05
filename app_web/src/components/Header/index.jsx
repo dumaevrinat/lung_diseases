@@ -1,11 +1,11 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import AppBar from '@material-ui/core/AppBar'
-import {Typography} from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import UIContext from '../../context'
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const titleByPath = {
-    '/': 'Home',
+    '/': 'Overview',
     '/prediction': 'Disease prediction',
     '/settings': 'Settings'
 }
@@ -34,7 +34,7 @@ const Header = () => {
     const classes = useStyles()
     const location = useLocation()
 
-    const {isMobile, isOpenDrawer, setIsOpenDrawer} = useContext(UIContext)
+    const { isMobile, isOpenDrawer, setIsOpenDrawer } = useContext(UIContext)
 
     return (
         <AppBar
@@ -44,13 +44,13 @@ const Header = () => {
             color='transparent'
         >
             {isMobile &&
-            <IconButton
-                className={classes.menuButton}
-                onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-                color='inherit'
-            >
-                <MenuIcon/>
-            </IconButton>
+                <IconButton
+                    className={classes.menuButton}
+                    onClick={() => setIsOpenDrawer(!isOpenDrawer)}
+                    color='inherit'
+                >
+                    <MenuIcon />
+                </IconButton>
             }
             <Typography
                 className={classes.title}

@@ -1,5 +1,5 @@
-import {makeStyles} from '@material-ui/styles'
-import {CardContent, Typography} from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { CardContent, Typography } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const CarouselCardItem = ({title, children}) => {
+const CarouselCardItem = ({ title, children }) => {
     const classes = useStyles()
 
     return (

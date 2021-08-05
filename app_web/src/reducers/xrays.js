@@ -42,7 +42,7 @@ export const xrays = (state = initialState, action) => {
                 ...state,
                 files: state.files.map(
                     file => file.id === action.payload.id ?
-                        {...file, ...action.payload} : file,
+                        { ...file, ...action.payload } : file,
                 ),
             }
 

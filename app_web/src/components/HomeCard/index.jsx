@@ -1,6 +1,6 @@
-import {makeStyles} from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 import Card from '@material-ui/core/Card'
-import {Typography} from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const HomeCard = ({title, children}) => {
+const HomeCard = ({ title, children }) => {
     const classes = useStyles()
 
     return (

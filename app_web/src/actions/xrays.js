@@ -1,7 +1,7 @@
-import {UPDATE_FILE, DELETE_FILE, DELETE_ALL_FILE, ADD_FILE} from './types'
-import {nanoid} from 'nanoid'
-import {enqueueSnackbar} from './notifications'
-import {predict} from '../api'
+import { UPDATE_FILE, DELETE_FILE, DELETE_ALL_FILE, ADD_FILE } from './types'
+import { nanoid } from 'nanoid'
+import { enqueueSnackbar } from './notifications'
+import { predict } from '../api'
 
 export const uploadFilesByStatus = (status) => async (dispatch, getState) => {
     const files = getState().xrays.files.filter(file => file.status === status)
@@ -27,12 +27,22 @@ export const uploadFile = (file) => async (dispatch) => {
                 dateOfCompletePrediction: new Date(),
             }))
         } else {
-            dispatch(updateFile({id: file.id, status: 'failed'}))
-            dispatch(enqueueSnackbar({message: 'Upload file error'}))
+            dispatch(updateFile({
+                id: file.id,
+                status: 'failed',
+                dateOfCompletePrediction: new Date()
+            }))
+
+            dispatch(enqueueSnackbar({ message: 'Upload file error' }))
         }
     }).catch(error => {
-        dispatch(updateFile({id: file.id, status: 'failed'}))
-        dispatch(enqueueSnackbar({message: 'Upload file error'}))
+        dispatch(updateFile({
+            id: file.id,
+            status: 'failed',
+            dateOfCompletePrediction: new Date()
+        }))
+
+        dispatch(enqueueSnackbar({ message: 'Upload file error' }))
     })
 }
 

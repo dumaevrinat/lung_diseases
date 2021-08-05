@@ -1,6 +1,6 @@
-import React, {memo, useState} from 'react'
-import {makeStyles} from '@material-ui/core'
-import {useSelector} from 'react-redux'
+import React, { memo, useState } from 'react'
+import { makeStyles } from '@material-ui/core'
+import { useSelector } from 'react-redux'
 import Box from '@material-ui/core/Box'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Chip from '@material-ui/core/Chip'
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const PredictionCard = ({file}) => {
+const PredictionCard = ({ file }) => {
     const classes = useStyles()
     const labels = useSelector(state => state.xrays.labels)
     const [popperAnchorEl, setPopperAnchorEl] = useState(null)
@@ -42,7 +42,7 @@ const PredictionCard = ({file}) => {
 
     return (
         <div className={classes.root}>
-            <ImageCard fileUrl={file.fileUrl}/>
+            <ImageCard fileUrl={file.fileUrl} />
 
             <div className={classes.footer}>
                 <Tooltip interactive placement='top' title={file.fileName}>
@@ -55,28 +55,28 @@ const PredictionCard = ({file}) => {
                     </Box>
                 </Tooltip>
                 <div>
-                    {file.status === 'loading' && <CircularProgress color='secondary' size={28} thickness={4.0}/>}
+                    {file.status === 'loading' && <CircularProgress color='secondary' size={28} thickness={4.0} />}
                     {file.status === 'succeeded' &&
-                    <Chip
-                        color='secondary'
-                        variant='outlined'
-                        clickable
-                        onClick={handleClickChip}
-                        label={labels[file.probability.indexOf(Math.max(...file.probability))]}
-                    />
+                        <Chip
+                            color='secondary'
+                            variant='outlined'
+                            clickable
+                            onClick={handleClickChip}
+                            label={labels[file.probability.indexOf(Math.max(...file.probability))]}
+                        />
                     }
                 </div>
             </div>
             {Boolean(popperAnchorEl) &&
-            <StatisticsPopper
-                isOpen={Boolean(popperAnchorEl)}
-                anchorEl={popperAnchorEl}
-                onClickAway={handleClickAwayPopper}
-                data={file.probability.map((probability, i) => ({
-                    label: labels[i],
-                    value: probability,
-                }))}
-            />
+                <StatisticsPopper
+                    isOpen={Boolean(popperAnchorEl)}
+                    anchorEl={popperAnchorEl}
+                    onClickAway={handleClickAwayPopper}
+                    data={file.probability.map((probability, i) => ({
+                        label: labels[i],
+                        value: probability,
+                    }))}
+                />
             }
         </div>
     )

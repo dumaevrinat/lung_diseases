@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import {Provider} from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { Provider } from 'react-redux'
 import store from '../../store'
 import UIContext from '../../context'
-import {ThemeProvider} from '@material-ui/styles'
-import {makeStyles, responsiveFontSizes} from '@material-ui/core/styles'
-import {theme} from '../../theme'
-import {Switch, Redirect, Route, BrowserRouter} from 'react-router-dom'
-import {Grow, useMediaQuery} from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/styles'
+import { makeStyles, responsiveFontSizes } from '@material-ui/core/styles'
+import { theme } from '../../theme'
+import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
+import { Grow, useMediaQuery } from '@material-ui/core'
 import NavDrawer from '../NavDrawer'
-import {SnackbarProvider} from 'notistack'
+import { SnackbarProvider } from 'notistack'
 import Notifier from '../Notifier'
 import Header from '../Header'
 import clsx from 'clsx'
@@ -57,20 +57,20 @@ const App = () => {
                     }}
                     TransitionComponent={Grow}
                 >
-                    <UIContext.Provider value={{isOpenDrawer, setIsOpenDrawer, isMobile}}>
+                    <UIContext.Provider value={{ isOpenDrawer, setIsOpenDrawer, isMobile }}>
                         <BrowserRouter>
                             <div className={classes.root}>
-                                <NavDrawer/>
-                                <Notifier/>
+                                <NavDrawer />
+                                <Notifier />
 
                                 <div className={clsx(classes.page, isMobile && classes.mobilePadding)}>
-                                        <Header/>
-                                        <Switch>
-                                            <Route path={'/'} exact component={HomePage}/>
-                                            <Route path={'/prediction'} exact component={PredictionPage}/>
-                                            <Route path={'/settings'} exact component={SettingsPage}/>
-                                            <Redirect from={'/*'} to={'/'}/>
-                                        </Switch>
+                                    <Header />
+                                    <Switch>
+                                        <Route path={'/'} exact component={HomePage} />
+                                        <Route path={'/prediction'} exact component={PredictionPage} />
+                                        <Route path={'/settings'} exact component={SettingsPage} />
+                                        <Redirect from={'/*'} to={'/'} />
+                                    </Switch>
                                 </div>
                             </div>
                         </BrowserRouter>

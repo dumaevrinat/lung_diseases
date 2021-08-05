@@ -35,4 +35,4 @@ RUN gdown "${UNET_MODEL_CONFIG_URL}" -O "${UNET_MODEL_CONFIG_PATH}"
 
 EXPOSE 8000
 
-ENTRYPOINT ["python", "server.py"]
+ENTRYPOINT ["uvicorn", "app.main:app"]

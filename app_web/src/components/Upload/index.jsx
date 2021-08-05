@@ -1,5 +1,5 @@
 import React from 'react'
-import {makeStyles} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Upload = ({onChange, children}) => {
+const Upload = ({ onChange, children }) => {
     const classes = useStyles()
 
     return (
