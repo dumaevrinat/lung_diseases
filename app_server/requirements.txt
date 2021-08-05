@@ -1,6 +1,6 @@
 git+git://github.com/dumaevrinat/lung_diseases.git@main#egg=lungs_ml&subdirectory=lungs_ml
 numpy==1.19.2
-fastapi==0.63.0
+fastapi==0.65.2
 uvicorn==0.13.4
 Pillow==8.2.0
 opencv-python==4.5.1.48
