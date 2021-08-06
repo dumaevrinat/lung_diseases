@@ -35,4 +35,4 @@ RUN gdown "${UNET_MODEL_CONFIG_URL}" -O "${UNET_MODEL_CONFIG_PATH}"
 
 EXPOSE 8000
 
-ENTRYPOINT ["uvicorn", "app.main:app"]
+ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
