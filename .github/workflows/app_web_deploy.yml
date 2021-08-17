@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'app_web/**'
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   deploy:
