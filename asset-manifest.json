@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/lung_diseases/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/lung_diseases/static/js/main.2af15649.chunk.js",
+    "main.js.map": "/lung_diseases/static/js/main.2af15649.chunk.js.map",
+    "runtime-main.js": "/lung_diseases/static/js/runtime-main.9ff86f79.js",
+    "runtime-main.js.map": "/lung_diseases/static/js/runtime-main.9ff86f79.js.map",
+    "static/js/2.3343a150.chunk.js": "/lung_diseases/static/js/2.3343a150.chunk.js",
+    "static/js/2.3343a150.chunk.js.map": "/lung_diseases/static/js/2.3343a150.chunk.js.map",
+    "static/js/3.4f906e3e.chunk.js": "/lung_diseases/static/js/3.4f906e3e.chunk.js",
+    "static/js/3.4f906e3e.chunk.js.map": "/lung_diseases/static/js/3.4f906e3e.chunk.js.map",
+    "index.html": "/lung_diseases/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/lung_diseases/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.3343a150.chunk.js.LICENSE.txt": "/lung_diseases/static/js/2.3343a150.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9ff86f79.js",
+    "static/js/2.3343a150.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.2af15649.chunk.js"
+  ]
+}

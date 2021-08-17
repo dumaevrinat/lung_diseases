@@ -1,0 +1,15 @@
+{
+  "short_name": "lungs diseases",
+  "name": "lungs diseases",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "1080x1080",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
