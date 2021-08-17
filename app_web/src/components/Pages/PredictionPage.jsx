@@ -85,11 +85,11 @@ const PredictionPage = () => {
                         onChange={handleAttachFiles}
                         children={
                             <Button
+                                size='large'
                                 startIcon={<Add />}
                                 variant='contained'
                                 disableElevation
                                 color='primary'
-                                component='span'
                             >
                                 Upload
                             </Button>
@@ -108,7 +108,6 @@ const PredictionPage = () => {
                                         variant='contained'
                                         disableElevation
                                         color='primary'
-                                        component='span'
                                     >
                                         Upload
                                     </Button>

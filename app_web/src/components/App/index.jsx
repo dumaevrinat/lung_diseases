@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         width: '100%',
         boxSizing: 'border-box',
-        padding: theme.spacing(2, 4, 4, 4),
+        padding: theme.spacing(2),
     },
     mobilePadding: {
-        padding: theme.spacing(0, 2),
+        padding: theme.spacing(0, 1),
     },
 }))
 

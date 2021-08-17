@@ -26,6 +26,7 @@ const ActionCard = ({ title, image, icon, onClick }) => {
         <Card variant='outlined' className={classes.root}>
             <CardContent className={classes.content}>
                 <Button
+                    size='large'
                     variant='contained'
                     disableElevation
                     color='primary'

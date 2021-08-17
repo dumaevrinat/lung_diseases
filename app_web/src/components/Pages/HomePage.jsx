@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         width: '100%',
     },
+    grid: {
+        padding: theme.spacing(1)
+    },
     chartCardContent: {
         display: 'flex',
         flexDirection: 'column',
@@ -63,96 +66,98 @@ const HomePage = () => {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={3} alignItems='stretch'>
-                <Grid item alignItems='stretch' container spacing={3} md={3}>
-                    <Grid item xs={12} sm={4} md={12}>
-                        <ActionCard
-                            title='Predict'
-                            image='images/xray.jpeg'
-                            icon={<GrainRounded />}
-                            onClick={() => goToPage('/prediction')}
-                        />
+            <div className={classes.grid}>
+                <Grid container spacing={2} alignItems='stretch'>
+                    <Grid item alignItems='stretch' container spacing={2} md={3}>
+                        <Grid item xs={12} sm={4} md={12}>
+                            <ActionCard
+                                title='Predict'
+                                image='images/xray.jpeg'
+                                icon={<GrainRounded />}
+                                onClick={() => goToPage('/prediction')}
+                            />
+                        </Grid>
+
+                        <Grid item xs={6} sm={4} md={12}>
+                            <HomeCard title='Total X-Ray'>
+                                <CardContent className={classes.statisticCardContent}>
+                                    <Typography color='secondary' variant='h5'>
+                                        {files.length}
+                                    </Typography>
+                                    <Typography color='secondary'>
+                                        images
+                                    </Typography>
+                                </CardContent>
+                            </HomeCard>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={12}>
+                            <HomeCard title='Average prediction time'>
+                                <CardContent className={classes.statisticCardContent}>
+                                    <Typography color='secondary' variant='h5'>
+                                        {(averagePredictionTime / (1000 * 60)).toFixed(2)}
+                                    </Typography>
+                                    <Typography color='secondary'>
+                                        minutes
+                                    </Typography>
+                                </CardContent>
+                            </HomeCard>
+                        </Grid>
                     </Grid>
 
-                    <Grid item xs={6} sm={4} md={12}>
-                        <HomeCard title='Total X-Ray'>
-                            <CardContent className={classes.statisticCardContent}>
-                                <Typography color='secondary' variant='h5'>
-                                    {files.length}
-                                </Typography>
-                                <Typography color='secondary'>
-                                    images
-                                </Typography>
+                    <Grid item xs={12} sm={6} md>
+                        <HomeCard title='Prediction statistics'>
+                            <CardContent className={classes.chartCardContent}>
+                                <PredictionChart />
                             </CardContent>
                         </HomeCard>
                     </Grid>
-                    <Grid item xs={6} sm={4} md={12}>
-                        <HomeCard title='Average prediction time'>
-                            <CardContent className={classes.statisticCardContent}>
-                                <Typography color='secondary' variant='h5'>
-                                    {(averagePredictionTime / (1000 * 60)).toFixed(2)}
+
+                    <Grid item xs={12} sm={6} md>
+                        <CarouselCard items={[
+                            <CarouselCardItem title='Covid-19'>
+                                <Typography>
+                                    Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered
+                                    coronavirus.
+                                    <br />
+                                    <br />
+                                    Most people infected with the COVID-19 virus will experience mild to moderate
+                                    respiratory
+                                    illness and recover without requiring special treatment. Older people, and those
+                                    with
+                                    underlying medical problems like cardiovascular disease, diabetes, chronic
+                                    respiratory
+                                    disease, and cancer are more likely to develop serious illness.
                                 </Typography>
-                                <Typography color='secondary'>
-                                    minutes
+                            </CarouselCardItem>,
+                            <CarouselCardItem title='Pneumonia'>
+                                <Typography>
+                                    Pneumonia is an inflammatory condition of the lung primarily affecting the small air
+                                    sacs known as alveoli.
+                                    Symptoms typically include some combination of productive or dry cough, chest pain,
+                                    fever and difficulty
+                                    breathing. The severity of the condition is variable.
+                                    <br />
+                                    <br />
+                                    Pneumonia is usually caused by infection with viruses or bacteria, and less commonly
+                                    by other microorganisms. Identifying the responsible pathogen can be difficult.
+                                    Diagnosis is often based on symptoms and physical examination. Chest X-rays,
+                                    blood tests, and culture of the sputum may help confirm the diagnosis. The disease
+                                    may be classified by where it was acquired, such as community- or hospital-acquired
+                                    or healthcare-associated pneumonia.
                                 </Typography>
+                            </CarouselCardItem>
+                        ]} />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <HomeCard title='Prediction log'>
+                            <CardContent className={classes.logCardContent}>
+                                <PredictionLog />
                             </CardContent>
                         </HomeCard>
                     </Grid>
                 </Grid>
-
-                <Grid item xs={12} sm={6} md>
-                    <HomeCard title='Prediction statistics'>
-                        <CardContent className={classes.chartCardContent}>
-                            <PredictionChart />
-                        </CardContent>
-                    </HomeCard>
-                </Grid>
-
-                <Grid item xs={12} sm={6} md>
-                    <CarouselCard items={[
-                        <CarouselCardItem title='Covid-19'>
-                            <Typography>
-                                Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered
-                                coronavirus.
-                                <br />
-                                <br />
-                                Most people infected with the COVID-19 virus will experience mild to moderate
-                                respiratory
-                                illness and recover without requiring special treatment. Older people, and those
-                                with
-                                underlying medical problems like cardiovascular disease, diabetes, chronic
-                                respiratory
-                                disease, and cancer are more likely to develop serious illness.
-                            </Typography>
-                        </CarouselCardItem>,
-                        <CarouselCardItem title='Pneumonia'>
-                            <Typography>
-                                Pneumonia is an inflammatory condition of the lung primarily affecting the small air
-                                sacs known as alveoli.
-                                Symptoms typically include some combination of productive or dry cough, chest pain,
-                                fever and difficulty
-                                breathing. The severity of the condition is variable.
-                                <br />
-                                <br />
-                                Pneumonia is usually caused by infection with viruses or bacteria, and less commonly
-                                by other microorganisms. Identifying the responsible pathogen can be difficult.
-                                Diagnosis is often based on symptoms and physical examination. Chest X-rays,
-                                blood tests, and culture of the sputum may help confirm the diagnosis. The disease
-                                may be classified by where it was acquired, such as community- or hospital-acquired
-                                or healthcare-associated pneumonia.
-                            </Typography>
-                        </CarouselCardItem>
-                    ]} />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <HomeCard title='Prediction log'>
-                        <CardContent className={classes.logCardContent}>
-                            <PredictionLog />
-                        </CardContent>
-                    </HomeCard>
-                </Grid>
-            </Grid>
+            </div>
         </div>
     )
 }
