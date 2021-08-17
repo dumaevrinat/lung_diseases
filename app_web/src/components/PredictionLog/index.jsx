@@ -31,7 +31,7 @@ const EmptyLog = () => {
     return (
         <div className={classes.emptyLog}>
             <FormatListBulletedRounded />
-            <Typography>
+            <Typography align='center'>
                 Upload X-Ray to get prediction log
             </Typography>
         </div>

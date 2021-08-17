@@ -79,7 +79,7 @@ const PredictionChart = () => {
             {filesData.length === 0 &&
                 <>
                     <DonutLargeRounded />
-                    <Typography>
+                    <Typography align='center'>
                         Upload X-Ray to get prediction statistics
                     </Typography>
                 </>
