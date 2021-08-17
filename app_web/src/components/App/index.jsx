@@ -5,7 +5,7 @@ import UIContext from '../../context'
 import { ThemeProvider } from '@material-ui/styles'
 import { makeStyles, responsiveFontSizes } from '@material-ui/core/styles'
 import { theme } from '../../theme'
-import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
+import { Switch, Redirect, Route, HashRouter } from 'react-router-dom'
 import { Grow, useMediaQuery } from '@material-ui/core'
 import NavDrawer from '../NavDrawer'
 import { SnackbarProvider } from 'notistack'
@@ -58,7 +58,7 @@ const App = () => {
                     TransitionComponent={Grow}
                 >
                     <UIContext.Provider value={{ isOpenDrawer, setIsOpenDrawer, isMobile }}>
-                        <BrowserRouter>
+                        <HashRouter>
                             <div className={classes.root}>
                                 <NavDrawer />
                                 <Notifier />
@@ -73,7 +73,7 @@ const App = () => {
                                     </Switch>
                                 </div>
                             </div>
-                        </BrowserRouter>
+                        </HashRouter>
                     </UIContext.Provider>
                 </SnackbarProvider>
             </ThemeProvider>
