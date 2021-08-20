@@ -28,7 +28,7 @@ Trained model files:
 ## Screenshots
 
 <p align="center">
-    <a href="//dumaevrinat.github.io/lantana">
+    <a href="//dumaevrinat.github.io/lung_diseases">
       <img src="./docs/page_1.png" />
       <br/><br/>
       <img src="./docs/page_2.png" />
