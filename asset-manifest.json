@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/lung_diseases/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/lung_diseases/static/js/main.ebc4b358.chunk.js",
-    "main.js.map": "/lung_diseases/static/js/main.ebc4b358.chunk.js.map",
-    "runtime-main.js": "/lung_diseases/static/js/runtime-main.cdf25e8d.js",
-    "runtime-main.js.map": "/lung_diseases/static/js/runtime-main.cdf25e8d.js.map",
-    "static/js/2.1e87f1b3.chunk.js": "/lung_diseases/static/js/2.1e87f1b3.chunk.js",
-    "static/js/2.1e87f1b3.chunk.js.map": "/lung_diseases/static/js/2.1e87f1b3.chunk.js.map",
-    "static/js/3.c0ad9424.chunk.js": "/lung_diseases/static/js/3.c0ad9424.chunk.js",
-    "static/js/3.c0ad9424.chunk.js.map": "/lung_diseases/static/js/3.c0ad9424.chunk.js.map",
-    "index.html": "/lung_diseases/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/lung_diseases/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.1e87f1b3.chunk.js.LICENSE.txt": "/lung_diseases/static/js/2.1e87f1b3.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/static/js/main.ebc4b358.chunk.js",
+    "main.js.map": "/static/js/main.ebc4b358.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c69eec35.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c69eec35.js.map",
+    "static/js/2.1e87f1b3.chunk.js": "/static/js/2.1e87f1b3.chunk.js",
+    "static/js/2.1e87f1b3.chunk.js.map": "/static/js/2.1e87f1b3.chunk.js.map",
+    "static/js/3.c0ad9424.chunk.js": "/static/js/3.c0ad9424.chunk.js",
+    "static/js/3.c0ad9424.chunk.js.map": "/static/js/3.c0ad9424.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.1e87f1b3.chunk.js.LICENSE.txt": "/static/js/2.1e87f1b3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cdf25e8d.js",
+    "static/js/runtime-main.c69eec35.js",
     "static/js/2.1e87f1b3.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
     "static/js/main.ebc4b358.chunk.js"
