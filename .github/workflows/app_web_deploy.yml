@@ -36,3 +36,5 @@ jobs:
         git config --global user.name ${{secrets.USERNAME}}
         git remote set-url origin https://${{secrets.PERSONAL_ACCESS_TOKEN}}@github.com/${{secrets.USERNAME}}/lung_diseases.git
         CI=false npm run deploy
+      env:
+        REACT_APP_SERVER_BASE_URL: ${{secrets.REACT_APP_SERVER_BASE_URL}}
